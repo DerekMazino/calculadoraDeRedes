@@ -1,0 +1,36 @@
+import ipv4 as ip4
+import conversiones as c
+direccion, prefijo = input("Digite la dirección de Host\n").split('/')
+direccionBin = list(map(c.decbin, direccion.split('.')))
+mascaraBin = ip4.calculandoMascara(prefijo)
+print('\n')
+print('---------------------')
+print('RESPUESTAS EN BINARIO')
+print('---------------------')
+print('Dirección de Host: '+'.'.join(direccionBin))
+print('Mascara: '+mascaraBin)
+direccionRed = ip4.obtenerDirRed('.'.join(direccionBin), mascaraBin)
+print('Dirección de Red: '+ direccionRed)
+primeraRedBin = ip4.obtenerPrimerRed(direccionRed)
+print('Primera red: '+primeraRedBin)
+broadcast = ip4.obtenerBroadcast(direccionRed, int(prefijo))
+ultimaRedBin = ip4.obtenerUltimaRed(broadcast)
+print('Ultima red: '+ultimaRedBin)
+print('Dirección Broadcast: '+broadcast)
+print('\n')
+print('---------------------')
+print('RESPUESTAS EN DECINAL')
+print('---------------------')
+direccionRedDec = list(map(c.bindec, direccionRed.split('.')))
+print('Dirección de Red: '+'.'.join(direccionRedDec))
+pdireccionRedDec = list(map(c.bindec, primeraRedBin.split('.')))
+print('Primera Dirección de Red: '+'.'.join(pdireccionRedDec))
+udireccionRedDec = list(map(c.bindec, ultimaRedBin.split('.')))
+print('Ultima Dirección de Red: '+'.'.join(udireccionRedDec))
+brdireccionRedDec = list(map(c.bindec, broadcast.split('.')))
+print('Dirección de Broadcast: '+'.'.join(brdireccionRedDec))
+print('\n')
+
+
+
+
