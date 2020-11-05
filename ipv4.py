@@ -37,4 +37,6 @@ def obtenerBroadcast(direccion, prefijo):
             broadcast += '.'
         if i<sufijo:
             broadcast += '1'
+    if prefijo == 24:
+        broadcast += '.'
     return (str(broadcast)+prueba[sufijo+1:])[::-1]
